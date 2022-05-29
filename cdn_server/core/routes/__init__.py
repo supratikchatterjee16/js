@@ -60,4 +60,4 @@ orm = server.orm
 def serve_script(script=None):
     if script == None:
         abort(404)
-    return redirect('https://raw.githubusercontent.com/supratikchatterjee16/js/master/jsbuilds/'+  script +'.min.js)
+    return redirect('https://raw.githubusercontent.com/supratikchatterjee16/js/master/jsbuilds/'+  script +'.min.js')

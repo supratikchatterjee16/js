@@ -1,1 +1,1 @@
-web: train_booking
+web: cdn_server
