@@ -30,7 +30,8 @@ _sortAlphaIcon = '',
 _sortNumeroIcon = '',
 _searchIcon = '';
 
-
+// prepare base
+document.body.style.margin = '0pt';
 
 // # Events
 
@@ -295,3 +296,4 @@ class InputElement extends HTMLInputElement{
 	repaint(){}
 	toString(){return "[object InputComponent]";}
 }
+
