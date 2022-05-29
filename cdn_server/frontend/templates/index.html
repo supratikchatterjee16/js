@@ -1,0 +1,11 @@
+{% extends "header.html" %}
+
+{% block content %}
+<h1 style="color:#093657"> Welcome
+    {% if user %}
+        {{user.name}}
+    {% else %}
+        Buddy!
+    {% endif %}
+</h1>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "header.html" %}
+{% block content %}
+<style>
+    input[type=text]{
+        width : 75%;
+        font-size:  16pt;
+        display: inline-block;
+        padding : 5pt;
+        margin : 5pt;
+    }
+    /* #word{
+        width : 80%;
+        font-size:  20pt;
+        display: inline-block;
+    } */
+    #submit{
+        width : 18%;
+        font-size : 16pt;
+        display: inline-block;
+        padding : 5pt;
+    }
+    #btn_del{
+        width : 18%;
+        font-size : 16pt;
+        display: inline-block;
+        padding : 5pt;
+    }
+    word{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        padding : 10pt;
+        margin : 2pt;
+        font-size : 12pt;
+    }
+</style>
+<form onsubmit="make_call(event)">
+    <input type="text" id="word" onkeyup="filter(event)" placeholder="Type/Select a word"/><input type="submit" id="submit" value = "Add/Modify"/>
+    <input type="text" id="changed" placeholder="Modify selected word to..." disabled/> <button onclick="delete_word(event)" id="btn_del" disabled>Delete</button>
+</form>
+<hr width="100%">
+<div style="display:flex" id="words">
+    <word onclick="select(event)">Test</word>
+</div>
+{% endblock %}

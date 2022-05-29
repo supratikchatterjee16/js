@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+{% block content %}
+<div style="display:flex;justify-content:center;align-items:center;">
+    <div>
+        <h1 style="text-align: center;"> Booking </h1>
+        <!-- Coach Form -->
+        <form action="admin/coach/add", method="post">
+            {{ coach_form.hidden_tag() }}
+            <p>
+            {{coach_form.type}} {{ coach_form.submit() }}
+            </p>
+        </form>
+        <!-- Date Form -->
+        <form action="admin/date/add", method="post">
+            {{ date_form.hidden_tag() }}
+            <p>
+            {{date_form.date}}
+            {{ date_form.submit() }}</p>
+        </form>
+    </div>
+</div>
+{% endblock %}
