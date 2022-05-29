@@ -61,8 +61,8 @@ main = Blueprint('main', __name__, template_folder='templates')
 def serve_script(script : str= ''):
     if script == None or script == '':
         abort(404)
-    base_url = 'https://raw.githubusercontent.com/supratikchatterjee16/js/master/jsbuilds/'
+    #base_url = 'https://raw.githubusercontent.com/supratikchatterjee16/js/master/jsbuilds/'
     script_filename = script +'.min.js'
-    print(base_url + script_filename)
-    return redirect(base_url + script_filename)
+    
+    return send_from_directory('jsbuilds', script_filename)
     #return ''

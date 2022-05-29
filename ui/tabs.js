@@ -21,7 +21,7 @@ class TabbedPageLayout extends ResponsiveLayout{
 		this.style.gridGap = "0pt";
 		this.style.padding = "0pt";
 		this.style.visibility = "visible";
-    this.style.gridAutoColumns = "1fr";
+        this.style.gridAutoColumns = "1fr";
 		// Get type of layout
 		this.appendChild(document.createElement('tabs-keeper'));
 		this._resetGridTemplateAreas();
