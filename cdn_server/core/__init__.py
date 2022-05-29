@@ -71,12 +71,14 @@ class Server:
         self.application.run(host='0.0.0.0', port=self.port, threaded=True, debug=True)
 
     def start(self):
-        from . import routes
         import bjoern
         self.application.config['SERVER_NAME'] = self.application.config['SERVER_NAME']
         from . import models
         with self.application.app_context():
             self.orm.create_all(bind=None)  # Only the main connection
+        
+        from cdn_server.core.routes import main
+        self.application.register_blueprint(main)
         logger.info('Starting server at port : ', self.port)
         print(self.port, 'Server', self.application.config['SERVER_NAME'])
         bjoern.run(self.application, "0.0.0.0", self.port, reuse_port=True)
