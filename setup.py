@@ -41,7 +41,7 @@ setup(
 	author				= 'Supratik Chatterjee',
 	author_email		= 'supratikdevm96@gmail.com',
 	# license			= '2-clause BSD',
-	url					= 'https://github.com/supratikchatterjee16/workbench',
+	url					= 'https://github.com/supratikchatterjee16/js',
 	description			= 'CDN server for personal use',
 	keywords			= ['git server python'],
 	install_requires	= requirements_noversion,

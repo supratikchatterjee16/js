@@ -50,19 +50,25 @@ class Server:
         self.application.config.update(config)
         self.application.config.update(SECRET_KEY=os.urandom(32))
         self.orm = SQLAlchemy(self.application)
-        # self.csrf = CSRFProtect(self.application)
         self.migrate = Migrate(self.application)
         # self.login_manager = LoginManager(self.application)
+        # self.csrf = CSRFProtect(self.application)
+        
 
     def debug(self):
-        from . import routes
+        #from .routes import *
         logger.info('Starting server in debug mode.')
-        self.application.config['SERVER_NAME'] = 'conceivilize.local:2000'
-        from .import models
+        self.application.config['SERVER_NAME'] = 'conceivilize.local:' + str(self.port)
+        from . import models
         with self.application.app_context():
             self.orm.create_all(bind=None)  # Only the main connection
-        self.application.run(host='0.0.0.0', port=self.port,
-                             threaded=True, debug=True, use_debugger=True)
+        from cdn_server.core.routes import main
+        self.application.register_blueprint(main)
+        #self.application.url_map = routes.get_routes()
+        print(self.application.url_map)
+        from cdn_server import server
+        print(server.application.url_map)
+        self.application.run(host='0.0.0.0', port=self.port, threaded=True, debug=True)
 
     def start(self):
         from . import routes
@@ -74,7 +80,6 @@ class Server:
         logger.info('Starting server at port : ', self.port)
         print(self.port, 'Server', self.application.config['SERVER_NAME'])
         bjoern.run(self.application, "0.0.0.0", self.port, reuse_port=True)
-
 
 # ws_server = WSUServer()
 # ws_thread = threading.Thread(target=ws_server.start)
