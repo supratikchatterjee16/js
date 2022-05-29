@@ -31,7 +31,7 @@ _sortNumeroIcon = '',
 _searchIcon = '';
 
 // prepare base
-document.body.style.margin = '0pt';
+// document.body.style.margin = '0pt'; // causes null pointer exception
 
 // # Events
 
@@ -297,3 +297,4 @@ class InputElement extends HTMLInputElement{
 	toString(){return "[object InputComponent]";}
 }
 
+function prepareUi(){document.body.style.margin = "0pt";}
