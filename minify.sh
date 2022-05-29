@@ -1,9 +1,9 @@
 pip3 install jsmin
-mkdir build
+mkdir jsbuilds
 directories='*/'
 for directory in $directories
 do
-    if [[ $directory == 'build/'  ]] || [[ $directory == 'cdn_server/'  ]];
+    if [[ $directory == 'jsbuilds/'  ]] || [[ $directory == 'cdn_server/'  ]];
     then
         continue
     else
