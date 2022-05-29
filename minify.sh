@@ -3,7 +3,7 @@ mkdir build
 directories='*/'
 for directory in $directories
 do
-    if [[ directory == 'build'  ]] || [[ directory == 'cdn_server' ]];
+    if [[ $directory == 'build/'  ]] || [[ $directory == 'cdn_server/'  ]];
     then
         continue
     else
