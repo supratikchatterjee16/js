@@ -8,6 +8,6 @@ do
         continue
     else
         yourfilenames=$directory'*.js'
-        python3.9 -m jsmin $yourfilenames > build/${directory::-1}.min.js
+        python3.9 -m jsmin $yourfilenames > jsbuilds/${directory::-1}.min.js
     fi
 done
