@@ -1,23 +1,23 @@
-from re import L
+#from re import L
 
-from sqlalchemy import func
-from pandas import read_sql_table, read_sql_query, DataFrame
+#from sqlalchemy import func
+#from pandas import read_sql_table, read_sql_query, DataFrame
 
-from incubyte_crud.core import forms
-from incubyte_crud import server
+#from incubyte_crud.core import forms
+#from incubyte_crud import server
 
-orm = server.orm
+#orm = server.orm
 
-# class UserContact(orm.Model):
-# 	entry_id = orm.Column(orm.Integer, primary_key=True)
-# 	user_id = orm.Column(orm.ForeignKey('user.id'))
-# 	user = orm.relationship('User')
-# 	email = orm.Column(orm.String(320), unique=True)
-# 	phone = orm.Column(orm.String(15), unique=True)
-# 	def __init__(self, user_id, email, phone):
-# 		self.user_id = user_id
-# 		self.email = email
-# 		self.phone = phone
+#class UserContact(orm.Model):
+	#entry_id = orm.Column(orm.Integer, primary_key=True)
+	#user_id = orm.Column(orm.ForeignKey('user.id'))
+	#user = orm.relationship('User')
+	#email = orm.Column(orm.String(320), unique=True)
+	#phone = orm.Column(orm.String(15), unique=True)
+	#def __init__(self, user_id, email, phone):
+		#self.user_id = user_id
+		#self.email = email
+		#self.phone = phone
 
 
 #class Words(orm.Model):
