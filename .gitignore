@@ -150,7 +150,7 @@ test/
 *.xlsx
 *.xls
 config/
-*config.py
+# *config.py
 documentation/
 # At any cost do not remove the config. We do not wish to commit config to github at any point of time.
 test/
