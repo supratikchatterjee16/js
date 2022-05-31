@@ -1,5 +1,8 @@
-pip3 install jsmin
-mkdir jsbuilds
+pip3 -q install jsmin
+if [ ! -d "jsbuilds" ];
+then
+    mkdir jsbuilds
+fi
 directories='*/'
 for directory in $directories
 do
