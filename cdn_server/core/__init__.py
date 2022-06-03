@@ -53,32 +53,29 @@ class Server:
         self.migrate = Migrate(self.application)
         # self.login_manager = LoginManager(self.application)
         # self.csrf = CSRFProtect(self.application)
-        
 
     def debug(self):
         #from .routes import *
         logger.info('Starting server in debug mode.')
-        self.application.config['SERVER_NAME'] = 'conceivilize.local:' + str(self.port)
-        from . import models
-        with self.application.app_context():
-            self.orm.create_all(bind=None)  # Only the main connection
+        self.application.config['SERVER_NAME'] = 'conceivilize.local:' + \
+            str(self.port)
+        # from . import models
+
         from cdn_server.core.routes import main
         self.application.register_blueprint(main)
-        #self.application.url_map = routes.get_routes()
-        print(self.application.url_map)
+        with self.application.app_context():
+            self.orm.create_all(bind=None)  # Only the main connection
         from cdn_server import server
-        print(server.application.url_map)
-        self.application.run(host='0.0.0.0', port=self.port, threaded=True, debug=True)
+        self.application.run(host='0.0.0.0', port=self.port,
+                             threaded=True, debug=True)
 
     def start(self):
         import bjoern
         self.application.config['SERVER_NAME'] = self.application.config['SERVER_NAME']
-        from . import models
-        with self.application.app_context():
-            self.orm.create_all(bind=None)  # Only the main connection
-        
         from cdn_server.core.routes import main
         self.application.register_blueprint(main)
+        with self.application.app_context():
+            self.orm.create_all(bind=None)  # Only the main connection
         logger.info('Starting server at port : ', self.port)
         print(self.port, 'Server', self.application.config['SERVER_NAME'])
         bjoern.run(self.application, "0.0.0.0", self.port, reuse_port=True)

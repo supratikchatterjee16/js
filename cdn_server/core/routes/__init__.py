@@ -11,7 +11,7 @@ main = Blueprint('main', __name__, template_folder='templates')
 
 @main.get('/')
 def send_welcome():
-    return 'This is a simple CDN for increasing visibility of JS scripts prepared by Conceivilize as a FOSS'
+    return 'This is a simple CDN for increasing visibility of JS scripts prepared by Conceivilize as a FOSS', 200
 
 
 @main.get('/<script>')
