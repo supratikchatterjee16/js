@@ -83,8 +83,10 @@ class FillComponent extends ResponsiveElement {
 			this.style.alignItems = 'center';
 			this.style.justifyContent = 'center';
 		}
-		// let top = this.getBoundingClientRect().top + window.scrollY;
-		// let height = window.innerHeight - top;
+
+		if (this.hasAttribute('force-down')) {
+			this.style.height = window.innerHeight - (this.getBoundingClientRect().top + window.scrollY);
+		}
 	}
 	setActive(object = null) {
 		// this.hidden = false;
