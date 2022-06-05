@@ -78,7 +78,7 @@ class FillComponent extends ResponsiveElement {
 			this.style.height = "100%";
 		}
 
-		if (this.getAttribute('center')) {
+		if (this.hasAttribute('center')) {
 			this.style.display = 'flex';
 			this.style.alignItems = 'center';
 			this.style.justifyContent = 'center';
