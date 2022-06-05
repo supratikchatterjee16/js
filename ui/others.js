@@ -84,6 +84,7 @@ class FillComponent extends ResponsiveElement {
 
 		if (this.hasAttribute('force-down')) {
 			this.style.height = window.innerHeight - (this.getBoundingClientRect().top + window.scrollY) + 'px';
+			console.log("FillCmponent on force-down" + window.innerHeight - (this.getBoundingClientRect().top + window.scrollY));
 		}
 	}
 	setActive(object = null) {
