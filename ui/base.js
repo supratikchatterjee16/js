@@ -299,4 +299,8 @@ class InputElement extends HTMLInputElement {
 }
 
 console.log("Hi from your UI library.\nReminder : call prepareUi() for some minor environment adjustments post load.");
-function prepareUi() { document.body.style.margin = "0pt"; }
+function prepareUi() {
+	document.body.style.margin = "0pt";
+	// window.onresize = function (e) { ; };
+}
+
