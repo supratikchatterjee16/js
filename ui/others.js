@@ -70,14 +70,12 @@ class FillComponent extends ResponsiveElement {
 		if (position != 'absolute' || position != 'fixed') {
 			this.parentNode.style.width = "100%";
 			this.parentNode.style.height = "100%";
-			this.style.width = this.parentNode.style.width;
-			this.style.height = this.parentNode.style.height;
 		}
 		else {
-			this.style.width = "100%";
-			this.style.height = "100%";
-		}
 
+		}
+		this.style.width = "100%";
+		this.style.height = "100%";
 		if (this.hasAttribute('center')) {
 			this.style.display = 'flex';
 			this.style.alignItems = 'center';
