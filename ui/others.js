@@ -62,6 +62,7 @@ class FillComponent extends ResponsiveElement {
 		// so how do we do that?
 		// The vertical can be taken care of by spreading downwards
 		// the horizontal will have to be taken care of by influencing the div above this.
+		this.theme = this.parentNode.theme;
 		let position = 'relative';
 		try {
 			position = this.getAttribute('position');
@@ -84,7 +85,6 @@ class FillComponent extends ResponsiveElement {
 
 		if (this.hasAttribute('force-down')) {
 			this.style.height = window.innerHeight - (this.getBoundingClientRect().top + window.scrollY) + 'px';
-			console.log("FillCmponent on force-down" + window.innerHeight - (this.getBoundingClientRect().top + window.scrollY));
 		}
 	}
 	setActive(object = null) {

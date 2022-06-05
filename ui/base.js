@@ -300,6 +300,16 @@ class InputElement extends HTMLInputElement {
 
 console.log("Hi from your UI library.\nReminder : call prepareUi() for some minor environment adjustments post load.");
 function prepareUi() {
+	// <meta name="viewport" content="width=device-width, initial-scale=1">
+	let metaViewport = document.createElement('meta');
+	metaViewport.name = 'viewport';
+	metaViewport.content = 'width=device-width, initial-scale=1, height=device-height';
+	document.head.appendChild(metaViewport);
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		document.body.theme = MaterialDark;
+	} else {
+		document.body.theme = MaterialLight;
+	}
 	document.body.style.margin = "0pt";
 	// window.onresize = function (e) { ; };
 }
