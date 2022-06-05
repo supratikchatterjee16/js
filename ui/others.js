@@ -83,7 +83,7 @@ class FillComponent extends ResponsiveElement {
 		}
 
 		if (this.hasAttribute('force-down')) {
-			this.style.height = window.innerHeight - (this.getBoundingClientRect().top + window.scrollY);
+			this.style.height = window.innerHeight - (this.getBoundingClientRect().top + window.scrollY) + 'px';
 		}
 	}
 	setActive(object = null) {
