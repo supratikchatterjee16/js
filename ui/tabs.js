@@ -140,11 +140,7 @@ class TabButton extends ResponsiveElement {
 		this.state = null;
 		this.active = false;
 		this._titlePane = document.createElement('span');
-		console.log(this.innerHTML);
-		if (this.innerHTML == '')
-			this._titlePane.innerHTML = "untitled";
-		else
-			this._titlePane.innerHTML = this.innerHTML;
+		this._titlePane.innerHTML = 'untitled';
 		this.activateEvent = new CustomEvent("activate", { bubbles: false });
 		this.deactivateEvent = new CustomEvent("deactivate", { bubbles: false });
 
@@ -169,6 +165,9 @@ class TabButton extends ResponsiveElement {
 		this.style.color = this.theme.onPrimary;
 		// this.style.borderRadius = "2pt";
 		this.verticalAlign = "middle";
+		if (this.innerHTML.length > 0) {
+			this._titlePane.innerHTML = this.innerHTML;
+		}
 		this.appendChild(this._titlePane);
 		if (!this.hasAttribute('noclose')) {
 			let closeButton = document.createElement('close-button');
