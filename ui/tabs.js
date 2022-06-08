@@ -140,6 +140,7 @@ class TabButton extends ResponsiveElement {
 		this.state = null;
 		this.active = false;
 		this._titlePane = document.createElement('span');
+		console.log(this.innerHTML);
 		if (this.innerHTML == '')
 			this._titlePane.innerHTML = "untitled";
 		else
@@ -169,10 +170,12 @@ class TabButton extends ResponsiveElement {
 		// this.style.borderRadius = "2pt";
 		this.verticalAlign = "middle";
 		this.appendChild(this._titlePane);
-		let closeButton = document.createElement('close-button');
-		this.appendChild(closeButton);
+		if (!this.hasAttribute('noclose')) {
+			let closeButton = document.createElement('close-button');
+			this.appendChild(closeButton);
+			closeButton.addEventListener("click", (event) => { event.stopPropagation(); event.target.parentNode.parentNode.remove(event.target.parentNode); });
+		}
 		this.addEventListener("click", (event) => { this.parentNode.select(this); });
-		closeButton.addEventListener("click", (event) => { event.stopPropagation(); event.target.parentNode.parentNode.remove(event.target.parentNode); });
 	}
 	setTitle(title) { this._titlePane.innerText = title; this.title = title; }
 	register(object) { this.registeredObject = object; }
