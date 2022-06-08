@@ -26,11 +26,11 @@ class RtcEntityConnection {
         }
 
     }
-    static loopback(data) {
+    loopback(data) {
         // var dataJson = JSON.stringify(data);
         if (typeof data === 'object')
             data = JSON.stringify(data);
-        RtcEntityConnection.wsConn.send(data);
+        this.wsConn.send(data);
     }
     static connect(targetUsername) {
         const peerConn = new RTCPeerConnection(RtcEntityConnection.rtc_conf);
