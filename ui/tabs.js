@@ -165,9 +165,8 @@ class TabButton extends ResponsiveElement {
 		this.style.color = this.theme.onPrimary;
 		// this.style.borderRadius = "2pt";
 		this.verticalAlign = "middle";
-		console.log(this.innerHTML);
-		if (this.innerHTML.length > 0) {
-			this._titlePane.innerHTML = this.innerHTML;
+		if (this.hasAttribute('title')) {
+			this._titlePane.innerHTML = this.getAttribute('title');
 		}
 		this.appendChild(this._titlePane);
 		if (!this.hasAttribute('noclose')) {
