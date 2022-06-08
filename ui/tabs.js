@@ -175,6 +175,12 @@ class TabButton extends ResponsiveElement {
 			closeButton.addEventListener("click", (event) => { event.stopPropagation(); event.target.parentNode.parentNode.remove(event.target.parentNode); });
 		}
 		this.addEventListener("click", (event) => { this.parentNode.select(this); });
+		if (this.hasAttribute('onactivate')) {
+			this.addEventListener('activate', Function(this.getAttribute('onactivate')));
+		}
+		if (this.hasAttribute('ondeactivate')) {
+			this.addEventListener('deactivate', Function(this.getAttribute('ondeactivate')));
+		}
 	}
 	setTitle(title) { this._titlePane.innerText = title; this.title = title; }
 	register(object) { this.registeredObject = object; }
