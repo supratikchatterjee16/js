@@ -19,7 +19,7 @@ class RtcEntityConnection {
         this.rtcConf = rtcConf;
         // Initialize WebSocket to server, reinit not required
         if (this.wsConn == null) {
-            this.wsConn = new WebSocket(wsConf.url, "json");
+            this.wsConn = new WebSocket(wsConf.url);
             this.wsConn.onopen = function (evt) { RtcEntityConnection.onWsOpen(evt); }
             this.wsConn.onerror = function (evt) { RtcEntityConnection.onWsErr(evt); }
             this.wsConn.onmessage = function (evt) { RtcEntityConnection.onWsMsg(evt); }
@@ -27,8 +27,10 @@ class RtcEntityConnection {
 
     }
     static loopback(data) {
-        var dataJson = JSON.stringify(data);
-        RtcEntityConnection.wsConn.send(dataJson);
+        // var dataJson = JSON.stringify(data);
+        if (typeof data === 'object')
+            data = JSON.stringify(data);
+        RtcEntityConnection.wsConn.send(data);
     }
     static connect(targetUsername) {
         const peerConn = new RTCPeerConnection(RtcEntityConnection.rtc_conf);

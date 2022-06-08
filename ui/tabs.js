@@ -23,7 +23,7 @@ class TabbedPageLayout extends ResponsiveLayout {
 		this.style.visibility = "visible";
 		this.style.gridAutoColumns = "1fr";
 		// Get type of layout
-		this.appendChild(document.createElement('tabs-keeper'));
+		// this.appendChild(document.createElement('tabs-keeper'));
 		this._resetGridTemplateAreas();
 	}
 	disconnectedCallback() { console.log(this + " DisconnectedCallback"); }
@@ -176,10 +176,12 @@ class TabButton extends ResponsiveElement {
 		}
 		this.addEventListener("click", (event) => { this.parentNode.select(this); });
 		if (this.hasAttribute('onactivate')) {
-			this.addEventListener('activate', Function(this.getAttribute('onactivate')));
+			let func = Function(this.getAttribute('onactivate'));
+			this.addEventListener('activate', func);
 		}
 		if (this.hasAttribute('ondeactivate')) {
-			this.addEventListener('deactivate', Function(this.getAttribute('ondeactivate')));
+			let func = Function(this.getAttribute('ondeactivate'));
+			this.addEventListener('deactivate', func);
 		}
 	}
 	setTitle(title) { this._titlePane.innerText = title; this.title = title; }
