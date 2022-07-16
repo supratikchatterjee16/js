@@ -1,3 +1,9 @@
+/*!
+ * Conceivilize File Transfer Online Lib
+ * @copyright 2022-2025 Supratik Chatterjee
+ * @license AGPL
+ */
+
 /**
 * This function is a utility function for printing debug messages.
 * @author Supratik Chattejee

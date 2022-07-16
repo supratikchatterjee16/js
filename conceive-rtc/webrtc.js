@@ -1,41 +1,20 @@
+/*!
+ * Web RTC Online API library
+ * @copyright 2022-2032 Supratik Chatterjee
+ * @license AGPL
+ */
 /** RtcEntityConnection primarily is used for sending single files, text, video and audio
  *  @author Supratik Chatterjee
  */
-class RtcEntityConnection {
-    rtcConf;
-
-    username;
-
-    wsConf;
-    wsConn;
-    static onWsOpen = function (evt) { console.warn("onWsOpen not overridden"); console.log(evt); };
-    static onWsErr = function (evt) { console.warn("onWsErr not overridden"); console.error(new Error("Ran into an error in the WebSocket connection", evt)); };
-    static onWsMsg = function (evt) { console.warn("onWsMsg not overridden"); console.log(evt); }
-
-    constructor(username, wsConf, rtcConf) {
-        // Use this scope to initialize rtc_conf and media requests
-        this.username = username;
-        this.wsConf = wsConf;
-        this.rtcConf = rtcConf;
-        // Initialize WebSocket to server, reinit not required
-        if (this.wsConn == null) {
-            if('proto' in wsConf)
-                this.wsConn = new WebSocket(wsConf.url, wsConf.proto);
-            else
-                this.wsConn = new WebSocket(wsConf.url);
-            this.wsConn.onopen = function (evt) { RtcEntityConnection.onWsOpen(evt); }
-            this.wsConn.onerror = function (evt) { RtcEntityConnection.onWsErr(evt); }
-            this.wsConn.onmessage = function (evt) { RtcEntityConnection.onWsMsg(evt); }
-        }
-
-    }
-    loopback(data) {
-        // var dataJson = JSON.stringify(data);
-        if (typeof data === 'object')
-            data = JSON.stringify(data);
-        this.wsConn.send(data);
-    }
-    static connect(targetUsername) {
+function RtcEntityConnection(username, wsConf, rtcConf) {
+    this.rtcConf = null;
+    this.username = null;
+    this.wsConf = null;
+    this.wsConn = null;
+    RtcEntityConnection.prototype.onWsOpen = function (evt) { console.warn("onWsOpen not overridden"); console.log(evt); };
+    RtcEntityConnection.prototype.onWsErr = function (evt) { console.warn("onWsErr not overridden"); console.error(new Error("Ran into an error in the WebSocket connection", evt)); };
+    RtcEntityConnection.prototype.onWsMsg = function (evt) { console.warn("onWsMsg not overridden"); console.log(evt); }
+    RtcEntityConnection.prototype.connect = function(targetUsername) {
         const peerConn = new RTCPeerConnection(RtcEntityConnection.rtc_conf);
 
         peerConn.onicecandidate = handleIceCandidate;
@@ -122,6 +101,28 @@ class RtcEntityConnection {
             // document.getElementById("hangup-button").disabled = false;
         }
     }
+    
+    // Use this scope to initialize rtc_conf and media requests
+    this.username = username;
+    this.wsConf = wsConf;
+    this.rtcConf = rtcConf;
+    // Initialize WebSocket to server, reinit not required
+    if (this.wsConn == null) {
+        if('proto' in wsConf)
+            this.wsConn = new WebSocket(wsConf.url, wsConf.proto);
+        else
+            this.wsConn = new WebSocket(wsConf.url);
+        this.wsConn.onopen = function (evt) { RtcEntityConnection.onWsOpen(evt); }
+        this.wsConn.onerror = function (evt) { RtcEntityConnection.onWsErr(evt); }
+        this.wsConn.onmessage = function (evt) { RtcEntityConnection.onWsMsg(evt); }
+    }
+    this.loopbac = (data) => {
+        // var dataJson = JSON.stringify(data);
+        if (typeof data === 'object')
+            data = JSON.stringify(data);
+        this.wsConn.send(data);
+    }
+    
 
     // _test() {
     //     console.log("RTC Config : " + RtcEntityConnection.rtc_conf);
