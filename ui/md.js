@@ -13,7 +13,13 @@ class MDView extends CustomElement {
         }
         content.split('\n').forEach(line => {
             if (line.startswith("#")) { // headings
-
+                let level = 0;
+                for (level = 0; level < line.length; level++)
+                    if (line.charAt(level) != '#' || level == 6)// h6 is the ast header level in html
+                        break;
+                let element = document.createElement('h' + level);
+                element.innerHTML = line.substring(level).trim();
+                this.appendChild(element);
             }
             else if (line.startswith("*")) { // italic and bold
 
@@ -24,13 +30,10 @@ class MDView extends CustomElement {
             else if (line.startswith("-")) {// unordered list(- )/horizontal rule(---)/tasklist(- [ ])
 
             }
-            else if (line.startswith("`") || line.startswth('~')) {// code or code block(syntax highlighting to be added later)
+            else if (line.startswith("`") || line.startswth('~')) {// code or code block(syntax highlighting to be added later)/ strikethrough(~~)
 
             }
-            else if (line.startswith("~~~")) {// code or code block(syntax highlighting to be added later)
-
-            }
-            else if (line.startswith("[")) {// expect link
+            else if (line.startswith("[")) {// expect link/ or footnote([^x])
 
             }
             else if (line.startswith("![")) {// expect image
