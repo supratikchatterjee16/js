@@ -17,7 +17,7 @@ class GridLayout extends ResponsiveLayout {
 	}
 }
 
-class GridComponent extends Element {
+class GridComponent extends CustomElement {
 	constructor() { super(); }
 	connectedCallback() {
 		this.style.gridArea = this.getAttribute('name');
@@ -27,8 +27,8 @@ class GridComponent extends Element {
 	}
 }
 
-// class RowComponent extends Element{}
-// class ColumnComponent extends Element{}
+// class RowComponent extends CustomElement{}
+// class ColumnComponent extends CustomElement{}
 customElements.define('grid-component', GridComponent);
 customElements.define('grid-layout', GridLayout);
 // customElements.define('row-component', RowComponent);

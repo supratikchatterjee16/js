@@ -34,13 +34,13 @@
 * @param event
 * @return null
 */
-window.onresize = function(event){
-	const trigger_update = function(element){
+window.onresize = function (event) {
+	const trigger_update = function (element) {
 		Array.from(element.children).forEach((element) => trigger_update(element));
-		if(element.repaint != null){
-			try{
+		if (element.repaint != null) {
+			try {
 				element.repaint();
-			}catch(e){console.error(e);}
+			} catch (e) { console.error(e); }
 		}
 	};
 	trigger_update(document.body);
@@ -53,15 +53,15 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-/** Element base class for creating new environment compliant component.
+/** CustomElement base class for creating new environment compliant component.
  * @author Supratik Chatterjee
  */
-class Element extends HTMLElement {
+class CustomElement extends HTMLElement {
 	// This is a static element.
 	// once created, is not updated
 	constructor() {
 		super();
-		this.theme = new MaterialDark();
+		this.theme = document.body.theme;
 		// element created
 	}
 	get theme() { return this.theme; }
@@ -99,7 +99,7 @@ class Layout extends HTMLElement {
 	constructor() {
 		super();
 		// element created
-		this.theme = new MaterialDark();
+		this.theme = document.body.theme;
 	}
 
 	connectedCallback() {
@@ -138,14 +138,14 @@ class Layout extends HTMLElement {
 * Rechecks the viewport dimensions at every render.
 * Any changes in the bubble causes a re-render of this component.
 */
-class ResponsiveElement extends Element {
+class ResponsiveElement extends CustomElement {
 
 	constructor() {
 		super();
 		this._viewport_width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 		this._viewport_height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 		this._viewport_orientation = 'landscape';
-		
+
 		this.calculateViewArea();
 	}
 

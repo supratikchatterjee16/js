@@ -1,4 +1,4 @@
-class BasicButton extends Element {
+class BasicButton extends CustomElement {
 	constructor() {
 		super();
 	}
@@ -37,7 +37,7 @@ class BasicButton extends Element {
 }
 customElements.define('button-basic', BasicButton);
 
-class LinkButton extends Element {
+class LinkButton extends CustomElement {
 	constructor() {
 		super();
 	}

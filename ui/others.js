@@ -15,7 +15,7 @@ class SearchComponent extends InputElement {
 customElements.define('search-component', SearchComponent);
 
 
-class OverlayComponent extends Element {
+class OverlayComponent extends CustomElement {
 	constructor() {
 		super();
 		this.blurTarget = null;

@@ -44,14 +44,14 @@ class SinglePageLayout extends ResponsiveLayout {
 	adoptedCallback() { console.log(this + 'AdoptedCallback'); }
 	toString() { return "[object SinglePageLayout]"; }
 }
-class LeftpaneComponent extends Element {
+class LeftpaneComponent extends CustomElement {
 	constructor() { super(); }
 	connectedCallback() {
 		this.style.gridArea = "leftmenu";
 		this.theme = this.parentElement.theme;
 	}
 }
-class RightpaneComponent extends Element {
+class RightpaneComponent extends CustomElement {
 	constructor() { super(); }
 	connectedCallback() {
 		this.style.gridArea = "rightmenu";
@@ -61,7 +61,7 @@ class RightpaneComponent extends Element {
 customElements.define('leftpane-component', LeftpaneComponent);
 customElements.define('rightpane-component', RightpaneComponent);
 
-class Navbar extends Element {
+class Navbar extends CustomElement {
 	constructor() {
 		super();
 	}
@@ -94,7 +94,7 @@ class Navbar extends Element {
 	attributeChangeCallback() { console.log(this + " AttributeChangeCallback"); }
 	toString() { return "[object Navbar]"; }
 }
-class NavbarTitle extends Element {
+class NavbarTitle extends CustomElement {
 	constructor() {
 		super();
 	}
@@ -128,8 +128,8 @@ class NavbarMenu extends ResponsiveElement {
 	attributeChangeCallback() { console.log(this + " AttributeChangeCallback"); }
 	toString() { return "[object NavbarMenu]"; }
 }
-class Footer extends Element { }
-class Main extends Element {
+class Footer extends CustomElement { }
+class Main extends CustomElement {
 	constructor() { super(); }
 	connectedCallback() {
 		this.style.gridArea = 'main';

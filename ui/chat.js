@@ -21,7 +21,7 @@ class ScrollMessages extends ResponsiveElement {
     }
 }
 
-class MessageContainer extends Element {
+class MessageContainer extends CustomElement {
     constructor() { super(); }
     connectedCallback() {
         this.theme = this.parentNode.theme;
@@ -136,7 +136,7 @@ class MessageEntry extends ResponsiveElement {
         this.theme = this.parentNode.theme;
     }
 }
-class ChatBox extends Element {
+class ChatBox extends CustomElement {
     constructor() { super(); }
     connectedCallback() {
         this.theme = this.parentNode.theme;

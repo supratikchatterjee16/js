@@ -18,7 +18,7 @@
 // The order in which the componenets are created follow the order as specified in
 // https://www.chartjs.org/docs/latest/samples/other-charts/stacked-bar-line.html
 
-class ChartPlot extends Element{
+class ChartPlot extends CustomElement{
 	// Elements integrally tied with ChartJS
 	constructor(){
 		super();
