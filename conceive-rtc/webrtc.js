@@ -116,7 +116,7 @@ function RtcEntityConnection(username, wsConf, rtcConf) {
         this.wsConn.onerror = function (evt) { RtcEntityConnection.onWsErr(evt); }
         this.wsConn.onmessage = function (evt) { RtcEntityConnection.onWsMsg(evt); }
     }
-    this.loopbac = (data) => {
+    this.loopback = (data) => {
         // var dataJson = JSON.stringify(data);
         if (typeof data === 'object')
             data = JSON.stringify(data);
