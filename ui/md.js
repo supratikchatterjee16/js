@@ -4,12 +4,14 @@ class MDView extends CustomElement {
     }
     format(content){
         this.innerHTML = MDView.mdHtml.render(content);
+        if(window.hljs)
+           hljs.highlightAll();
     }
     connectedCallback() {
         let source = this.getAttribute("src");
         if(!window.markdownit){
             console.error("Markdown-It was not loaded.\nAdd : <script src=\"https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js\"></script>\nAborting.");
-            console.info("We depend on Markdown It for the official implementation of Markdown rendering in JS. We aren't adding this, as you(the developer) need to implement it by yourself.\n Furthermore for syntax highlighting, hljs is used.");
+            console.info("We depend on Markdown It for the official implementation of Markdown rendering in JS. We aren't adding this, as you(the developer) need to implement it by yourself.\n Furthermore for syntax highlighting, highlight.js is used. Simply adding it will enable it's use.");
             return;
         }
         else if(!MDView.mdHtml){// the below has been adapted from https://markdown-it.github.io/index.js
@@ -35,8 +37,6 @@ class MDView extends CustomElement {
                 return slf.renderToken(tokens, idx, options, env, slf);
             }
             MDView.mdHtml.renderer.rules.paragraph_open = MDView.mdHtml.renderer.rules.heading_open = injectLineNumbers;
-            
-            MDView.setup = true;// injected to perform singleton action
         }
         if (!source) {
             throw Error("Source not defined.");
