@@ -15,7 +15,7 @@ class MDView extends CustomElement {
         else if(!MDView.setup){// the below has been adapted from https://markdown-it.github.io/index.js
             this.mdHtml = window.markdownit("commonmark");
             this.mdSrc = window.markdownit("commonmark");
-            }
+            
             // Beautify output of parser for html content
             this.mdHtml.renderer.rules.table_open = function() {
                 return '<table class="table table-striped">\n';// NOTE : Bootstrap usage. Remove.
