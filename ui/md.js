@@ -47,7 +47,7 @@ class MDView extends CustomElement {
         if (!source) {
             throw Error("Source not defined.");
         }
-        if (source.startsWith('http')) {
+        if (source.startsWith('http') || source.startsWith('file')) {
             fetch(source)
             .then(response => response.text())
             .then(text => { format(text); });
