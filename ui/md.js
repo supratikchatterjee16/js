@@ -2,12 +2,19 @@ class MDView extends CustomElement {
     constructor() {
         super();
         if(!window.markdownit){
-            let response = await fetch('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js')
-            let text = await response.text();
-            let func = new Function(text);
-            fun();
-            console.error("Unable to load markdown-it");
+            attempt_markdownit_load();
         }
+    }
+    /**
+     * Why this external viewer? This is the official one. -\(ツ)/-
+     * We leverage this and don't rework against the opencollective.com
+     */
+    attempt_markdowit_load(){
+        fetch('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js')
+            .then(response => response.text())
+            .then(text => {
+                (new Function(text))();
+            });
     }
     format(content){
         let md_state = 0;// 0 : default, 1 : code, 
@@ -62,6 +69,10 @@ class MDView extends CustomElement {
     }
     connectedCallback() {
         let source = this.getAttribute("src");
+        if(!window.markdownit){
+            console.error("Mardown-It was not loaded.\nAdd : <script src=\"https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js\"></script>\nAborting.");
+            return;
+        }
         if (!source) {
             throw Error("Source not defined.");
         }
