@@ -1,8 +1,11 @@
 class MDView extends CustomElement {
-    static markdownit = await import('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js');
     constructor() {
         super();
-        if(MDView.markdownit){
+        if(!window.markdownit){
+            let response = await fetch('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js')
+            let text = await response.text();
+            let func = new Function(text);
+            fun();
             console.error("Unable to load markdown-it");
         }
     }
