@@ -9,7 +9,7 @@ class MDView extends CustomElement {
      * Why this external viewer? This is the official one. -\(ツ)/-
      * We leverage this and don't rework against the opencollective.com
      */
-    attempt_markdowit_load(){
+    attempt_markdownit_load(){
         fetch('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js')
             .then(response => response.text())
             .then(text => {
