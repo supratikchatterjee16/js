@@ -50,7 +50,7 @@ class MDView extends CustomElement {
         if (source.startsWith('http') || source.startsWith('file')) {
             fetch(source)
             .then(response => response.text())
-            .then(text => { format(text); });
+            .then(text => { this.format(text); });
         }
         
 
