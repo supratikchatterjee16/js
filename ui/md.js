@@ -1,5 +1,5 @@
 class MDView extends CustomElement {
-    static markdownit = null;
+    static markdownit;
     constructor() {
         super();
         if(MDView.markdownit == null){
