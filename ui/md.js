@@ -6,6 +6,27 @@ class MDView extends CustomElement {
     format(content){
         console.log(content);
         content.split('\n').forEach(line => {
+            switch(line.charAt(0)){
+                case '#' : {}; break;
+                case '*' : {}; break;
+                case '>' : {}; break;
+                case '-' : {}; break;
+                case '`' :
+                case '~' : {}; break;
+                case '[' : {}; break;
+                case '!' : {}; break;
+                case '0' :
+                case '1' :
+                case '2' :
+                case '3' :
+                case '4' :
+                case '5' :
+                case '6' :
+                case '7' :
+                case '8' : 
+                case '9' : {}; break;
+                default  : {}; break;
+            }
             if (line.startsWith("#")) { // headings
                 let level = 0;
                 for (level = 0; level < line.length; level++)
@@ -39,7 +60,6 @@ class MDView extends CustomElement {
             else {// inside line markdown handling
 
             }
-
         });
     }
     connectedCallback() {
