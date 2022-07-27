@@ -1,6 +1,10 @@
 class MDView extends CustomElement {
+    static markdownit = null;
     constructor() {
         super();
+        if(MDView.markdownit == null){
+            MDView.markdownit = await import('https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js');
+        }
     }
     format(content){
         let md_state = 0;// 0 : default, 1 : code, 
