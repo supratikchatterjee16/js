@@ -3,7 +3,7 @@ class MDView extends CustomElement {
         super();
     }
     format(content){
-        this.innerHTML = mdHtml.render(content);
+        this.innerHTML = MDView.mdHtml.render(content);
     }
     connectedCallback() {
         let source = this.getAttribute("src");
@@ -12,16 +12,16 @@ class MDView extends CustomElement {
             console.info("We depend on Markdown It for the official implementation of Markdown rendering in JS. We aren't adding this, as you(the developer) need to implement it by yourself.\n Furthermore for syntax highlighting, hljs is used.");
             return;
         }
-        else if(!MDView.setup){// the below has been adapted from https://markdown-it.github.io/index.js
-            this.mdHtml = window.markdownit("commonmark");
-            this.mdSrc = window.markdownit("commonmark");
+        else if(!MDView.mdHtml){// the below has been adapted from https://markdown-it.github.io/index.js
+            MDView.mdHtml = window.markdownit("commonmark");
+//             this.mdSrc = window.markdownit("commonmark");
             
             // Beautify output of parser for html content
-            this.mdHtml.renderer.rules.table_open = function() {
+            MDView.mdHtml.renderer.rules.table_open = function() {
                 return '<table class="table table-striped">\n';// NOTE : Bootstrap usage. Remove.
             };
             // Replace emoji codes with images
-            this.mdHtml.renderer.rules.emoji = function(token, idx) {
+            MDView.mdHtml.renderer.rules.emoji = function(token, idx) {
                 return window.twemoji.parse(token[idx].content);// NOTE : Twitter Emoji pack. Throw out.
             };
             
@@ -34,7 +34,7 @@ class MDView extends CustomElement {
                 }
                 return slf.renderToken(tokens, idx, options, env, slf);
             }
-            this.mdHtml.renderer.rules.paragraph_open = this.mdHtml.renderer.rules.heading_open = injectLineNumbers;
+            MDView.mdHtml.renderer.rules.paragraph_open = MDView.mdHtml.renderer.rules.heading_open = injectLineNumbers;
             
             MDView.setup = true;// injected to perform singleton action
         }
