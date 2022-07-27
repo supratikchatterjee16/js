@@ -1,3 +1,4 @@
+'use strict';
 /*!
  * Conceivilize UI
  * @copyright 2022-2032 Conceivilize, Supratik Chatterjee
