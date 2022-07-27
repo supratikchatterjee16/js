@@ -6,15 +6,35 @@ class MDView extends CustomElement {
     format(content){
         console.log(content);
         content.split('\n').forEach(line => {
-            switch(line.charAt(0)){
-                case '#' : {}; break;
-                case '*' : {}; break;
-                case '>' : {}; break;
-                case '-' : {}; break;
+            switch(line.charAt(0)){// headings
+                case '#' : {
+                    let level = 0;
+                    for (level = 0; level < line.length; level++)
+                        if (line.charAt(level) != '#' || level == 6)// h6 is the ast header level in html
+                            break;
+                    let element = document.createElement('h' + level);
+                    element.innerHTML = line.substring(level).trim();
+                    this.appendChild(element);
+                }; break;
+                case '*' : {// italic and bold
+                    
+                }; break;
+                case '>' : {// blockquote
+                    
+                }; break;
+                case '-' : {// unordered list(- )/horizontal rule(---)/tasklist(- [ ])
+                    
+                }; break;
                 case '`' :
-                case '~' : {}; break;
-                case '[' : {}; break;
-                case '!' : {}; break;
+                case '~' : {// code or code block(syntax highlighting to be added later)/ strikethrough(~~)
+                    
+                }; break;
+                case '[' : {// expect link/ or footnote([^x])
+                    
+                }; break;
+                case '!' : {// expect image
+                    
+                }; break;
                 case '0' :
                 case '1' :
                 case '2' :
@@ -24,41 +44,12 @@ class MDView extends CustomElement {
                 case '6' :
                 case '7' :
                 case '8' : 
-                case '9' : {}; break;
-                default  : {}; break;
-            }
-            if (line.startsWith("#")) { // headings
-                let level = 0;
-                for (level = 0; level < line.length; level++)
-                    if (line.charAt(level) != '#' || level == 6)// h6 is the ast header level in html
-                        break;
-                let element = document.createElement('h' + level);
-                element.innerHTML = line.substring(level).trim();
-                this.appendChild(element);
-            }
-            else if (line.startsWith("*")) { // italic and bold
-
-            }
-            else if (line.startsWith(">")) { // blockquote
-
-            }
-            else if (line.startsWith("-")) {// unordered list(- )/horizontal rule(---)/tasklist(- [ ])
-
-            }
-            else if (line.startsWith("`") || line.startswth('~')) {// code or code block(syntax highlighting to be added later)/ strikethrough(~~)
-
-            }
-            else if (line.startsWith("[")) {// expect link/ or footnote([^x])
-
-            }
-            else if (line.startsWith("![")) {// expect image
-
-            }
-            else if (line.match(/^\d/)) {// ordered list
-
-            }
-            else {// inside line markdown handling
-
+                case '9' : {// ordered list
+                    
+                }; break;
+                default  : {// inside line markdown handling
+                    
+                }; break;
             }
         });
     }
