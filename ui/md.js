@@ -4,6 +4,7 @@ class MDView extends CustomElement {
     }
     
     format(content){
+        console.log(content);
         content.split('\n').forEach(line => {
             if (line.startswith("#")) { // headings
                 let level = 0;
@@ -47,7 +48,9 @@ class MDView extends CustomElement {
             throw Error("Source not defined.");
         }
         if (source.startsWith('http')) {
-            fetch(source).then(response => response.text()).then(text => { format(text); });
+            fetch(source)
+            .then(response => response.text())
+            .then(text => { format(text); });
         }
         
 
