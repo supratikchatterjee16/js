@@ -1,5 +1,3 @@
-import * as md from 'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js';
-
 class MDView extends CustomElement {
     constructor() {
         super();

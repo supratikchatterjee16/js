@@ -28,6 +28,7 @@
 // document.body.style.margin = '0pt'; // causes null pointer exception
 
 // # Events
+import * as md from 'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js';
 
 /**
 * Script to re-render the window on reload
